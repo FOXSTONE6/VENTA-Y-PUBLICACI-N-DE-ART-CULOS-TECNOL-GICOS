@@ -10,7 +10,6 @@
 <!-- HEADER -->
 <header class="header">
     <div class="logo">TecnoMarket</div>
-
     <input type="text" placeholder="Buscar..." class="buscador">
 
     <div class="hamburguesa" onclick="toggleMenu()">☰</div>
@@ -21,8 +20,33 @@
         <a href="#">Artículos</a>
         <a href="#">Ofertas</a>
         <a href="#">Contacto</a>
+        <a href="#login" onclick="abrirLogin()">Login</a>
     </nav>
 </header>
+
+
+
+
+
+<!-- MODAL LOGIN -->
+<div class="modal" id="loginModal">
+    <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarLogin()">&times;</span>
+        <h2>Iniciar Sesión</h2>
+
+        <form class="form-login" onsubmit="iniciarSesion(event)">
+            <input type="text" id="loginUsuario" placeholder="Usuario o correo" required>
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <p id="mensajeLogin" class="mensaje-login"></p>
+    </div>
+</div>
+
+
+
+
 
 <!-- HERO -->
 <section class="hero">
@@ -31,41 +55,59 @@
     <div class="hero-texto">
         <h1>Bienvenido a TecnoMarket</h1>
         <p>Lo mejor en tecnología al mejor precio</p>
-        <button>Comprar ahora</button>
+        <button class="btn-hero" onclick="irTienda()">Comprar ahora</button>
     </div>
 </section>
+
+
 
 <!-- CATEGORÍAS -->
 <section class="categorias">
     <h2>Categorías</h2>
-    <div class="grid-categorias">
 
-        <div class="categoria">
-            <img src="img/laptop.jpg" alt="">
-            <h3>Computadoras</h3>
-            <p>Equipos de alto rendimiento para trabajo y gaming.</p>
+    <div class="carrusel-categorias" id="carruselCategorias">
+        <div class="track-categorias" id="trackCategorias">
+            <div class="categoria">
+                <img src="img/laptop.jpg" alt="Laptops">
+                <h3>Laptops</h3>
+                <p>Equipos de alto rendimiento para estudio, trabajo y gaming.</p>
+            </div>
+
+            <div class="categoria">
+                <img src="img/celular.jpg" alt="Celulares">
+                <h3>Celulares</h3>
+                <p>Smartphones modernos con gran potencia y mejores cámaras.</p>
+            </div>
+
+            <div class="categoria">
+                <img src="img/cargador.webp" alt="Accesorios">
+                <h3>Accesorios</h3>
+                <p>Complementos ideales para mejorar tu experiencia tecnológica.</p>
+            </div>
+
+            <div class="categoria">
+                <img src="img/ram.jpg" alt="Componentes">
+                <h3>Componentes</h3>
+                <p>Partes y hardware para potenciar tu PC.</p>
+            </div>
+
+            <div class="categoria">
+                <img src="img/monitor.png" alt="Monitores">
+                <h3>Monitores</h3>
+                <p>Pantallas de alta calidad para oficina, diseño y gaming.</p>
+            </div>
+
+            <div class="categoria">
+                <img src="img/camara.webp" alt="Periféricos">
+                <h3>Periféricos</h3>
+                <p>Teclados, mouse y dispositivos para productividad y juego.</p>
+            </div>
         </div>
-
-        <div class="categoria">
-            <img src="img/celular.jpg" alt="">
-            <h3>Celulares</h3>
-            <p>Los mejores smartphones del mercado actual.</p>
-        </div>
-
-        <div class="categoria">
-            <img src="img/cargador.webp" alt="">
-            <h3>Accesorios</h3>
-            <p>Complementos tecnológicos para tu día a día.</p>
-        </div>
-
-        <div class="categoria">
-            <img src="img/ram.jpg" alt="">
-            <h3>Componentes</h3>
-            <p>Hardware para mejorar tu PC.</p>
-        </div>
-
     </div>
 </section>
+
+
+
 
 <!-- PRODUCTOS DESTACADOS -->
 <section class="productos">
@@ -73,28 +115,28 @@
     <div class="grid-productos">
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/laptopgamer.png">
             <h3>Laptop Gamer</h3>
             <p>Potente laptop para juegos exigentes.</p>
             <span class="precio">S/. 3500</span>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/iphone.webp">
             <h3>Smartphone Pro</h3>
             <p>Alta gama con excelente cámara.</p>
             <span class="precio">S/. 1800</span>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/audifono.jpg">
             <h3>Auriculares</h3>
             <p>Sonido envolvente y comodidad.</p>
             <span class="precio">S/. 200</span>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/teclado.webp">
             <h3>Teclado Mecánico</h3>
             <p>Ideal para gamers y programadores.</p>
             <span class="precio">S/. 250</span>
@@ -109,19 +151,19 @@
     <div class="grid-articulos">
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/iacurso.jpg">
             <h3>Inteligencia Artificial</h3>
             <p>Descubre las tendencias de la IA en 2026.</p>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
-            <h3>Mejores laptops</h3>
-            <p>Comparativa de las mejores laptops del año.</p>
+            <img src="img/cursoweb.webp">
+            <h3>Desarrollo Web</h3>
+            <p>Cursos de desarrollo web para emprendedores.</p>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/200">
+            <img src="img/framework.png">
             <h3>Frameworks JS</h3>
             <p>Los más usados en desarrollo web moderno.</p>
         </div>
