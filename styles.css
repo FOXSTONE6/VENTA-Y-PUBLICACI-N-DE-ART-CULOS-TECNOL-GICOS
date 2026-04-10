@@ -1,16 +1,36 @@
-/* RESET */
+/* =========================
+   RESET GENERAL
+   Reinicia márgenes y rellenos,
+   y mejora el cálculo de tamaños
+========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilo general de la página */
 body {
     font-family: 'Segoe UI', sans-serif;
     background: #ffffff;
+    color: #222;
 }
 
-/* ================= HEADER ================= */
+/* Espaciado general de secciones */
+section {
+    padding: 20px;
+}
+
+/* Separación inferior de títulos */
+h2 {
+    margin-bottom: 15px;
+}
+
+/* =========================
+   HEADER
+   Contiene logo, buscador,
+   menú y botón hamburguesa
+========================= */
 .header {
     display: flex;
     align-items: center;
@@ -21,16 +41,18 @@ body {
     position: relative;
 }
 
+/* Logo principal */
 .logo {
     font-weight: bold;
+    font-size: 20px;
 }
 
-/* BUSCADOR */
+/* Buscador oculto por defecto en móvil */
 .buscador {
     display: none;
 }
 
-/* MENU */
+/* Menú móvil oculto por defecto */
 .menu {
     display: none;
     flex-direction: column;
@@ -39,8 +61,10 @@ body {
     top: 60px;
     left: 0;
     width: 100%;
+    z-index: 20;
 }
 
+/* Enlaces del menú */
 .menu a {
     padding: 10px;
     border-top: 1px solid #1b263b;
@@ -48,33 +72,55 @@ body {
     text-decoration: none;
 }
 
-/* BOTÓN HAMBURGUESA */
+/* Ícono hamburguesa para móvil */
 .hamburguesa {
     font-size: 20px;
     cursor: pointer;
 }
 
-/* MOSTRAR MENU */
+/* Clase activada desde JS para mostrar menú */
 .menu.activo {
     display: flex;
 }
 
-/* ================= HERO ================= */
+/* =========================
+   HERO
+   Banner principal con imagen
+   de fondo y texto encima
+========================= */
 .hero {
     background: url("img/banner.png") no-repeat center center;
-    background-size: cover; /* 🔥 hace que ocupe todo el espacio */
-    
+    background-size: cover;
     height: 300px;
-    
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    color: white;
     text-align: center;
-}   
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
 
-/* ================= BOTÓN HERO ================= */
+/* Caja de texto encima del banner */
+.hero-texto {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Título principal del hero */
+.hero h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Texto secundario del hero */
+.hero p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Botón principal del hero */
 .btn-hero {
     margin-top: 15px;
     padding: 14px 28px;
@@ -86,82 +132,280 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover */
+/* Efecto al pasar el mouse */
 .btn-hero:hover {
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Click */
+/* Efecto al hacer clic */
 .btn-hero:active {
     transform: scale(0.95);
 }
 
-
-.hero h1 {
-    font-size: 22px;
-}
-
-.hero button {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: white;
-    color: #0077b6;
-}
-
-/* ================= SECCIONES ================= */
-section {
-    padding: 20px;
-}
-
-h2 {
-    margin-bottom: 15px;
-}
-
-/* ================= GRID ================= */
-.grid-categorias,
+/* =========================
+   GRIDS GENERALES
+   Distribuye tarjetas en columnas
+========================= */
 .grid-productos,
 .grid-articulos {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 15px;
 }
 
-/* CARDS */
-.categoria, .card {
+/* Tarjetas generales de productos y artículos */
+.card {
     background: white;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* ================= TABLET ================= */
-@media (min-width: 768px) {
+/* Imágenes dentro de tarjetas */
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 
+/* Títulos de tarjetas */
+.card h3 {
+    margin: 10px 0 5px;
+}
+
+/* Descripción de tarjetas */
+.card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Precio resaltado */
+.precio {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+/* =========================
+   MODAL LOGIN
+   Ventana emergente para iniciar sesión
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+}
+
+/* Caja del contenido del login */
+.modal-contenido {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Título del modal */
+.modal-contenido h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #0d1b2a;
+}
+
+/* Botón de cerrar */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Formulario del login en columna */
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Inputs del formulario */
+.form-login input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Efecto al seleccionar input */
+.form-login input:focus {
+    border-color: #0077b6;
+}
+
+/* Botón del formulario */
+.form-login button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #0077b6;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Hover del botón login */
+.form-login button:hover {
+    background: #023e8a;
+}
+
+/* Mensaje de error o confirmación */
+.mensaje-login {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #d00000;
+}
+
+/* =========================
+   CARRUSEL DE CATEGORÍAS
+   Contenedor horizontal animado
+========================= */
+.categorias {
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+/* Área visible del carrusel */
+.carrusel-categorias {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Pista horizontal donde se mueven las categorías */
+.track-categorias {
+    display: flex;
+    gap: 20px;
+    will-change: transform;
+}
+
+/* Tarjeta individual de categoría */
+.categoria {
+    min-width: 260px;
+    max-width: 260px;
+    background: white;
+    border-radius: 18px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Imagen de la categoría */
+.categoria img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+/* Título de la categoría */
+.categoria h3 {
+    margin-bottom: 8px;
+    color: #0d1b2a;
+}
+
+/* Descripción de la categoría */
+.categoria p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Resaltado visual al pasar el mouse */
+.categoria:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    border: 2px solid #00b4d8;
+}
+
+/* Estado activo controlado por JavaScript */
+.categoria.activa {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    border: 2px solid #0077b6;
+}
+
+/* =========================
+   FOOTER
+   Pie de página principal
+========================= */
+.footer {
+    background: #0d1b2a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* =========================
+   RESPONSIVE TABLET
+   Ajusta buscador, grids y hero
+========================= */
+@media (min-width: 768px) {
     .buscador {
         display: block;
         width: 40%;
         padding: 8px;
     }
 
-    .grid-categorias,
     .grid-productos,
     .grid-articulos {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .hero {
+        height: 400px;
+    }
+
     .hero h1 {
         font-size: 28px;
     }
+
+    .categoria {
+        min-width: 220px;
+        max-width: 220px;
+    }
+
+    .categoria img {
+        height: 140px;
+    }
 }
 
-/* ================= PC ================= */
+/* =========================
+   RESPONSIVE PC
+   Menú horizontal, mayor ancho y más columnas
+========================= */
 @media (min-width: 1024px) {
-
     .hamburguesa {
         display: none;
     }
@@ -183,249 +427,30 @@ h2 {
         width: 30%;
     }
 
-    .grid-categorias,
     .grid-productos,
     .grid-articulos {
         grid-template-columns: repeat(4, 1fr);
     }
 
-  /* HERO */
-.hero {
-    position: auto;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-}
-
-/* IMAGEN */
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 🔥 clave para que no se deforme */
-}
-
-/* TEXTO ENCIMA */
-.hero-texto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    color: white;
-    text-align: center;
-    background: rgba(0,0,0,0.4);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* RESPONSIVE */
-@media (min-width: 768px) {
-    .hero {
-        height: 400px;
-    }
-}
-
-@media (min-width: 1024px) {
     .hero {
         height: 500px;
     }
-}
 
     .hero h1 {
         font-size: 36px;
     }
 }
-/* IMÁGENES */
-.categoria img,
-.card img {
-   width: 100%;
-    height: 150px;
-    object-fit: contain;
-   
-    border-radius: 10px;
-    margin-bottom: 10px
-}
 
-/* TEXTO */
-.card h3, .categoria h3 {
-    margin: 10px 0 5px;
-}
-
-.card p, .categoria p {
-    font-size: 14px;
-    color: #555;
-}
-
-/* PRECIO */
-.precio {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #0077b6;
-}
-
-/* ================= LOGIN MODAL ================= */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-}
-
-.modal-contenido {
-    background: white;
-    width: 100%;
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 25px;
-    border-radius: 16px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.modal-contenido h2 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #0d1b2a;
-}
-
-.cerrar {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #333;
-}
-
-.form-login {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.form-login input {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    font-size: 14px;
-}
-
-.form-login input:focus {
-    border-color: #0077b6;
-}
-
-.form-login button {
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #0077b6;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.form-login button:hover {
-    background: #023e8a;
-}
-
-.mensaje-login {
-    margin-top: 12px;
-    text-align: center;
-    font-size: 14px;
-    color: #d00000;
-}
-
-/* Responsive modal */
+/* =========================
+   RESPONSIVE MÓVIL PEQUEÑO
+   Ajustes finos para celular
+========================= */
 @media (max-width: 480px) {
     .modal-contenido {
         margin: 40px auto;
         padding: 20px;
     }
-}
 
-/* ================= CARRUSEL CATEGORÍAS ================= */
-.categorias {
-    padding: 40px 20px;
-    overflow: hidden;
-}
-
-.carrusel-categorias {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.track-categorias {
-    display: flex;
-    gap: 20px;
-    will-change: transform;
-}
-
-.categoria {
-    min-width: 260px;
-    max-width: 260px;
-    background: white;
-    border-radius: 18px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
-    border: 2px solid transparent;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.categoria img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 12px;
-}
-
-.categoria h3 {
-    margin-bottom: 8px;
-    color: #0d1b2a;
-}
-
-.categoria p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.4;
-}
-
-/* Hover resaltado */
-.categoria:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 16px 30px rgba(0,0,0,0.18);
-    border: 2px solid #00b4d8;
-}
-
-/* Activa desde JS */
-.categoria.activa {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 16px 30px rgba(0,0,0,0.18);
-    border: 2px solid #0077b6;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .categoria {
-        min-width: 220px;
-        max-width: 220px;
-    }
-
-    .categoria img {
-        height: 140px;
-    }
-}
-
-@media (max-width: 480px) {
     .categoria {
         min-width: 200px;
         max-width: 200px;
@@ -434,14 +459,4 @@ h2 {
     .categoria img {
         height: 130px;
     }
-}
-
-
-
-/* FOOTER */
-.footer {
-    background: #0d1b2a;
-    color: white;
-    text-align: center;
-    padding: 20px;
 }
